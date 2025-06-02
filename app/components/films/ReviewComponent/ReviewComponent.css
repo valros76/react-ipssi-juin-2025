@@ -1,0 +1,35 @@
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 2rem;
+  transition: color .375s ease-out;
+}
+
+.stars-container {
+  width: max-content;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  position: relative;
+
+  &:hover .star-label {
+    opacity: 1;
+  }
+}
+
+.star-label {
+  color: #333;
+  opacity: .5;
+  font-size: .7rem;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

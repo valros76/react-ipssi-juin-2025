@@ -1,0 +1,32 @@
+.grid-sections{
+  width:100dvw;
+  max-width:100%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(calc(-36.6667px + 16.6667dvw), 30dvw));
+  grid-auto-rows:1fr;
+  grid-auto-flow: row dense;
+  gap:1.25rem;
+  padding-inline:2rem;
+}
+
+.grid-articles{
+  max-width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:stretch;
+  gap:.25rem;
+
+  img{
+    max-width:100%;
+    height:auto;
+    aspect-ratio:1/1;
+    object-fit:cover;
+  }
+}
+
+@media (width <= 868px){
+  .grid-sections{
+    grid-template-columns:repeat(auto-fit, minmax(30dvw, calc(40dvw - 1.25rem)));
+  }
+}

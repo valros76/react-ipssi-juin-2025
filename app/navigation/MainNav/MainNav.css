@@ -1,0 +1,7 @@
+.main-menu{
+  width:max-content;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:.8rem;
+}

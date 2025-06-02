@@ -1,0 +1,15 @@
+.main-articles{
+  overflow-x:hidden;
+}
+
+.tags-container{
+  width:max-content;
+  max-width:auto;
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  padding-block:.6rem;
+  padding-inline:1.2rem;
+}

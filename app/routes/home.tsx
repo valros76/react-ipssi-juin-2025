@@ -1,13 +1,13 @@
+import HomeView from "~/pages/HomeView/HomeView";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Accueil React Ipssi" },
+    { name: "description", content: "Page d'accueil du projet React avec l'IPSSI." },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return <HomeView/>;
 }
