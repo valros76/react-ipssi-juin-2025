@@ -8,7 +8,7 @@ export default [
   ]),
   ...prefix("futurama", [
     index("routes/futurama.tsx"),
-    route(":characterId", "pages/FuturamaCharacterView")
+    route(":characterId", "pages/FuturamaCharacterView/FuturamaCharacterView.tsx")
   ]),
   route("*", "routes/error.tsx")
 ] satisfies RouteConfig;

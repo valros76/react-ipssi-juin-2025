@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import type { FuturamaCharactersI } from "~/models/futurama.interface";
 import "./SearchCharactersComponent.css";
+import { redirect, useNavigate } from "react-router";
 
 export default function SearchCharacters({
   characters,
 }: {
   characters: FuturamaCharactersI[];
 }) {
+  const navigate = useNavigate();
+
   const [searchCharacter, setSearchCharacter] =
     useState("");
   const [filtredCharacters, setFiltredCharacters] =
@@ -21,7 +24,8 @@ export default function SearchCharacters({
   const handleSubmit = (formData: FormData) => {
     const id = Number(formData.get("characterName"));
     if (typeof id !== "number") return;
-    alert(`Votre recherche : ${id}.`);
+    console.log(`%c ${id}`, "color: #296;font-weight: 900;font-size:1.3rem;");
+    navigate(`/futurama/${id}`);
   };
 
   useEffect(() => {
@@ -64,6 +68,9 @@ export default function SearchCharacters({
           )}
         </datalist>
       )}
+      <button type="submit">
+        Rechercher
+      </button>
       <button type="reset">Reset</button>
     </form>
   );
