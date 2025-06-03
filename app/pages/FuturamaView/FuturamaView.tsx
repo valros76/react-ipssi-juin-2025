@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import SearchCharacters from "~/components/futurama/SearchCharacters";
 import { FuturamaContext } from "~/contexts/futurama/FuturamaContext";
 import {
   type FuturamaCharactersI,
@@ -56,20 +57,8 @@ export default function FuturamaView() {
       {isLoading && (
         <p>Chargement des données en cours ...</p>
       )}
-      {randomSeason && (
-        <article>
-          <h3>Saison {randomSeason.id}</h3>
-          <table>
-            {randomSeason.episodes?.map(
-              (episode: FuturamaSeasonEpisodeI) => (
-                <tr key={episode.id}>
-                  <th>{episode.name}</th>
-                  <td>{episode.number}</td>
-                </tr>
-              )
-            )}
-          </table>
-        </article>
+      {(characters && characters?.items) && (
+        <SearchCharacters characters={characters.items}/>
       )}
       {characters &&
         characters?.items?.map(
@@ -90,6 +79,24 @@ export default function FuturamaView() {
             </article>
           )
         )}
+        
+      {randomSeason && (
+        <article>
+          <h3>Saison {randomSeason.id}</h3>
+          <table>
+            <tbody>
+            {randomSeason.episodes?.map(
+              (episode: FuturamaSeasonEpisodeI) => (
+                <tr key={episode.id}>
+                  <th>{episode.name}</th>
+                  <td>{episode.number}</td>
+                </tr>
+              )
+            )}
+            </tbody>
+          </table>
+        </article>
+      )}
     </section>
   );
 }
