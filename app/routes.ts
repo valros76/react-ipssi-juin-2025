@@ -6,6 +6,9 @@ export default [
     index("routes/films.tsx"),
     route(":filmId", "routes/film-details.tsx")
   ]),
-  route("futurama", "routes/futurama.tsx"),
+  ...prefix("futurama", [
+    index("routes/futurama.tsx"),
+    route(":characterId", "pages/FuturamaCharacterView")
+  ]),
   route("*", "routes/error.tsx")
 ] satisfies RouteConfig;

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import SearchCharacters from "~/components/futurama/SearchCharacters";
+import SearchCharacters from "~/components/futurama/SearchCharacterComponent/SearchCharactersComponent";
 import { FuturamaContext } from "~/contexts/futurama/FuturamaContext";
 import {
   type FuturamaCharactersI,
