@@ -1,5 +1,5 @@
 export default function CounterComponent({ props }: any) {
-  const { count, handleIncrementCount } = props;
+  const { count, handleIncrementCount, handleDecrementCount } = props;
   
   return (
     <div>
@@ -7,7 +7,9 @@ export default function CounterComponent({ props }: any) {
         onClick={handleIncrementCount}
       >+</button>
       <span>{count ?? "0"}</span>
-      <button>-</button>
+      <button
+        onClick={handleDecrementCount}
+      >-</button>
     </div>
   );
 }

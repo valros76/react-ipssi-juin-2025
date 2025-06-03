@@ -13,6 +13,11 @@ export default function MainNav(){
           Films
         </NavLink>
       </li>
+      <li className="main-menu-items">
+        <NavLink to="/futurama">
+          Futurama
+        </NavLink>
+      </li>
     </menu>
   </nav>);
 }

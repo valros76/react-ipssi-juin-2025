@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import ArticleComponent from "~/components/global/ArticleComponent/ArticleComponent";
 import CounterComponent from "~/components/global/CounterComponent/CounterComponent";
+import { useCounter } from "~/contexts/global/CounterContext";
 
 export default function HomeView() {
 
-  const [count, setCount] = useState(0);
-
-  const onIncrementCount = () => {
-    setCount(prev => prev + 1);
-  }
+  const {count, onIncrementCount, onDecrementCount} = useCounter();
 
   return (
     <>
       <section>
         <CounterComponent props={{
           count: count,
-          handleIncrementCount: onIncrementCount
+          handleIncrementCount: onIncrementCount,
+          handleDecrementCount: onDecrementCount
         }}/>
 
         <ArticleComponent/>

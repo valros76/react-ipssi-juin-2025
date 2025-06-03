@@ -148,3 +148,22 @@ main,
   width:100%;
   min-height:100dvh;
 }
+
+.error-sections{
+  width:max-content;
+  background-color:#cd1717;
+  color:#fff;
+  margin-inline:auto;
+  padding-block:.8rem;
+  padding-inline:1.2rem;
+
+  a,
+  a:visited{
+    color:#f2f2f2;
+
+    &:hover{
+      color:#fce8e8;
+      text-underline-offset: .35rem;
+    }
+  }
+}
