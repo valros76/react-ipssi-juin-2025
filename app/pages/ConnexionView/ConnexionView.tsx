@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "~/contexts/auth/AuthContext";
 import type { UserI } from "~/models/auth.interface";
@@ -34,7 +34,13 @@ export default function ConnexionView(){
       <label htmlFor="username">
         Nom d'utilisateur : 
       </label>
-      <input type="text" name="username" id="username" autoComplete="username" required/>
+      <input 
+        type="text" 
+        name="username" 
+        id="username" 
+        autoComplete="username"
+        required
+      />
       <label htmlFor="password">
         Mot de passe (minimum 4 charactères) :
       </label>
