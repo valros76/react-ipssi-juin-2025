@@ -12,5 +12,7 @@ export default [
   ]),
   route("nasa", "routes/nasa.tsx"),
   route("connexion", "routes/connexion.tsx"),
+  route("profile", "pages/ProfileView/ProfileView.tsx"),
+  route("deconnexion", "pages/DeconnexionView/DeconnexionView.tsx"),
   route("*", "routes/error.tsx")
 ] satisfies RouteConfig;

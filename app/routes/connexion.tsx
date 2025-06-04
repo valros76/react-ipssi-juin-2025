@@ -1,3 +1,4 @@
+import ConnexionView from "~/pages/ConnexionView/ConnexionView";
 import type { Route } from "../+types/root";
 
 export function meta({}: Route.MetaArgs) {
@@ -8,7 +9,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Connexion() {
-  return (
-    <></>
-  );
+  return <ConnexionView/>;
 }

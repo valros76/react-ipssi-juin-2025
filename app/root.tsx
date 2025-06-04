@@ -12,6 +12,7 @@ import "./app.css";
 import Header from "./layouts/Header/Header";
 import Footer from "./layouts/Footer/Footer";
 import { CounterProvider } from "./contexts/global/CounterContext";
+import { AuthProvider } from "./contexts/auth/AuthContext";
 
 export const links: Route.LinksFunction = () => [
   {
@@ -50,11 +51,13 @@ export function Layout({
         <Links />
       </head>
       <body>
-        <CounterProvider>
-          <Header />
-          <main className="main-content">{children}</main>
-          <Footer />
-        </CounterProvider>
+        <AuthProvider>
+          <CounterProvider>
+            <Header />
+            <main className="main-content">{children}</main>
+            <Footer />
+          </CounterProvider>
+        </AuthProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
