@@ -3,14 +3,25 @@ import { NavLink } from "react-router";
 import DateSelection from "~/components/nasa/DateSelection";
 import { NasaContext } from "~/contexts/nasa/NasaContext";
 
+enum EnabledAPIS{
+  ROVER,
+  EPIC
+}
+
 export default function NasaEarthView() {
-  const { earthPicture, fetchEarthPicture } =
+  const { earthPicture, epicPicture, fetchEarthPicture, fetchEpicPicture } =
     useContext(NasaContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedAPI, setSelectedAPI] = useState<EnabledAPIS>(EnabledAPIS.ROVER);
 
   const [selectedDate, setSelectedDate] = useState<string>(
     new Date("2017-6-15").toString()
   );
+
+  /**
+   * 
+   * TODO: Mettre en place l'interface de switch API
+   */
 
   const onChangeSelectedDate = (newDate: string) => {
     setSelectedDate(newDate);
@@ -18,22 +29,36 @@ export default function NasaEarthView() {
 
   useEffect(() => {
     if (isLoading) {
+      let actualDate = new Date(selectedDate) ?? new Date("2017-6-15");
+      if(selectedAPI === EnabledAPIS.ROVER){
       (async () => {
-        let actualDate = new Date(selectedDate) ?? new Date("2017-6-15");
         const promiseFinished: boolean =
           await fetchEarthPicture(actualDate);
         if (promiseFinished) {
           setIsLoading(false);
         }
       })();
+      }
+      if(selectedAPI === EnabledAPIS.EPIC){
+      (async () => {
+        const promiseFinished: boolean =
+          await fetchEpicPicture(actualDate);
+        if (promiseFinished) {
+          setIsLoading(false);
+        }
+      })();
+      }
     }
 
     if (selectedDate) {
       setIsLoading(true);
     }
-  }, [earthPicture, selectedDate]);
+  }, [earthPicture, epicPicture, selectedDate]);
 
-  if (earthPicture?.photos?.length <= 0)
+  if (
+    (selectedAPI === EnabledAPIS.ROVER && earthPicture?.photos?.length <= 0)
+    || (selectedAPI === EnabledAPIS.EPIC && epicPicture?.photos?.length <= 0)
+  )
     return (
       <section>
         <p>Aucune image trouvée.</p>
@@ -54,6 +79,17 @@ export default function NasaEarthView() {
             <img
               src={data?.img_src}
               alt={data?.camera?.full_name}
+              loading="lazy"
+            />
+          </article>
+        ))}
+        {epicPicture?.photos?.map((data: any) => (
+          <article key={data.id}>
+            <h2>Date : {data?.earth_date}</h2>
+            <img
+              src={data?.img_src}
+              alt={data?.camera?.full_name}
+              loading="lazy"
             />
           </article>
         ))}

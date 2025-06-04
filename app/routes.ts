@@ -11,5 +11,6 @@ export default [
     route(":characterId", "pages/FuturamaCharacterView/FuturamaCharacterView.tsx")
   ]),
   route("nasa", "routes/nasa.tsx"),
+  route("connexion", "routes/connexion.tsx"),
   route("*", "routes/error.tsx")
 ] satisfies RouteConfig;
