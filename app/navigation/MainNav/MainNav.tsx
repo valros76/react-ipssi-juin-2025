@@ -18,6 +18,11 @@ export default function MainNav(){
           Futurama
         </NavLink>
       </li>
+      <li className="main-menu-items">
+        <NavLink to="/nasa">
+          Nasa
+        </NavLink>
+      </li>
     </menu>
   </nav>);
 }

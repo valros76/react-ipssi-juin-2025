@@ -10,5 +10,6 @@ export default [
     index("routes/futurama.tsx"),
     route(":characterId", "pages/FuturamaCharacterView/FuturamaCharacterView.tsx")
   ]),
+  route("nasa", "routes/nasa.tsx"),
   route("*", "routes/error.tsx")
 ] satisfies RouteConfig;
