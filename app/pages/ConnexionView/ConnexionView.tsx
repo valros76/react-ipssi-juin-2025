@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "~/contexts/auth/AuthContext";
+import type { UserI } from "~/models/auth.interface";
 
 
 export default function ConnexionView(){
-  const {initUser, handleConnexion} = useContext(AuthContext);
+  const {initUser, handleConnexion, saveUserInfos} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -14,13 +15,15 @@ export default function ConnexionView(){
   }
 
   const handleSubmit = (formData:FormData) => {
-    const username = formData.get("username");
-    initUser({
+    const username:any = formData.get("username");
+    const user: UserI = {
       id:42,
       username: username,
       email: `${username}@test.fr`
-    });
+    };
+    initUser(user);
     handleConnexion(true);
+    saveUserInfos(user);
     navigate("/profile");
   }
 
