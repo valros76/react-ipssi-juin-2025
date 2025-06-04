@@ -8,8 +8,8 @@ export const NasaProvider = ({children}: {children: ReactNode}) => {
 
   const [earthPicture, setEathPicture] = useState([]);
 
-  const fetchEarthPicture = async (date: Date = new Date("2015-6-3")) => {
-    let exploreDate: string = `${date.getFullYear()}-${date.getMonth()}-${date.getDay() + 1}`;
+  const fetchEarthPicture = async (date: Date|string = new Date("2015-6-3")) => {
+    let exploreDate: string = (typeof date !== "string") ? `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}` : date;
     await fetch(`${apiRoot}?earth_date=${exploreDate}${apiKey}`)
     .then(result => result.ok && result.json())
     .then(datas => setEathPicture(datas))

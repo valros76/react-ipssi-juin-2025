@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router";
+import DateSelection from "~/components/nasa/DateSelection";
 import { NasaContext } from "~/contexts/nasa/NasaContext";
 
 export default function NasaEarthView() {
@@ -7,10 +8,18 @@ export default function NasaEarthView() {
     useContext(NasaContext);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [selectedDate, setSelectedDate] = useState<string>(
+    new Date("2017-6-15").toString()
+  );
+
+  const onChangeSelectedDate = (newDate: string) => {
+    setSelectedDate(newDate);
+  };
+
   useEffect(() => {
     if (isLoading) {
       (async () => {
-        let actualDate = new Date("2017-2-7");
+        let actualDate = new Date(selectedDate) ?? new Date("2017-6-15");
         const promiseFinished: boolean =
           await fetchEarthPicture(actualDate);
         if (promiseFinished) {
@@ -18,20 +27,27 @@ export default function NasaEarthView() {
         }
       })();
     }
-  }, [earthPicture]);
 
-  if(earthPicture?.photos?.length <= 0) return (<section>
-    <p>
-      Aucune image trouvée.
-    </p>
-    <NavLink to="/">
-      Sortir
-    </NavLink>
-  </section>);
+    if (selectedDate) {
+      setIsLoading(true);
+    }
+  }, [earthPicture, selectedDate]);
+
+  if (earthPicture?.photos?.length <= 0)
+    return (
+      <section>
+        <p>Aucune image trouvée.</p>
+        <NavLink to="/">Sortir</NavLink>
+      </section>
+    );
 
   return (
     earthPicture?.photos?.length > 0 && (
       <section>
+        <DateSelection
+          selectedDate={selectedDate}
+          setSelectedDate={onChangeSelectedDate}
+        />
         {earthPicture?.photos?.map((data: any) => (
           <article key={data.id}>
             <h2>Date : {data?.earth_date}</h2>
